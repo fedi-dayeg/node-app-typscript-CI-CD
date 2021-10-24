@@ -27,7 +27,7 @@ dotenv.config();
 const express_1 = __importDefault(require("express"));
 const index_1 = __importDefault(require("./src/index"));
 const app = (0, express_1.default)();
-const port = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
+const port = 3100 ? parseInt('3100', 10) : 3000;
 const server = new index_1.default(app);
 app.listen(port, 'localhost', () => {
     // tslint:disable-next-line:no-console
