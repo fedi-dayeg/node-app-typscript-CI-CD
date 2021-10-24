@@ -7,7 +7,7 @@ export default class LessonsController {
 
     async getAllLeeson(req: Request, res: Response, next: NextFunction) {
         try {
-             // await Lesson.sync();
+            // await Lesson.sync();
             const lessons = await LessonsRepo.getAllLessons({order: ['id']});
             res.json(lessons);
         } catch (error) {
@@ -53,7 +53,7 @@ export default class LessonsController {
             const result = await LessonsRepo.updateLesson(id, req.body);
             res.json(result);
         } catch (error) {
-            apiErrorHandler(error, req, res,  `updation of Lesson ${req.params.id} is failed.`);
+            apiErrorHandler(error, req, res, `updation of Lesson ${req.params.id} is failed.`);
         }
     }
 
@@ -64,7 +64,7 @@ export default class LessonsController {
             const result = await LessonsRepo.deleteLesson(id);
             res.json(result);
         } catch (error) {
-            apiErrorHandler(error, req, res,  `deletion of Lesson ${req.params.id}  is failed.`);
+            apiErrorHandler(error, req, res, `deletion of Lesson ${req.params.id}  is failed.`);
         }
     }
 
