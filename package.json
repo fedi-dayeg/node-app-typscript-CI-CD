@@ -5,6 +5,8 @@
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
   "scripts": {
+    "build": "tsc --project .",
+    "build-prod": "npm install && npm run build",
     "start": "node build/index.js",
     "prod": "run production",
     "dev": "tsnd --respawn index.ts",
