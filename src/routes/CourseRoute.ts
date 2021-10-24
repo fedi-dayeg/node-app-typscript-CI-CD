@@ -18,4 +18,5 @@ class CourseRoute {
     }
 }
 
+
 export default new CourseRoute().router;
