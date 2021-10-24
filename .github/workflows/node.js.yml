@@ -15,6 +15,5 @@ jobs:
     - name: Use Node.js ${{ matrix.node-version }}
       with:
         node_version: ${{ matrix.node_version }}
-    - run: |
-        npm i
-        nodemon index.ts
+    - run: npm install
+    - run: npm test
