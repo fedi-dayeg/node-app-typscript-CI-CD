@@ -1,5 +1,5 @@
 import { Sequelize, Options, Op } from 'sequelize';
-const dbUrl: string = process.env.DATABASE_URL || '';
+const dbUrl: string = 'postgres://postgres:root@20.107.194.127/nodeApp' || '';
 const nodeEnv: string = process.env.NODE_ENV || '';
 
 if (!dbUrl) {
