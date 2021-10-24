@@ -1,21 +1,20 @@
-name: Node.js CI
+name: Push to master
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    branches:
+      - master
 
 jobs:
   build:
-    runs_on: self-hosted
+    runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node_version: ${{ matrix.node_version }}
-      - run: |
-          npm i
-          nodemon index.ts
-
+    # the checkout action persists the passed credentials by default
+    # subsequent git commands will pick them up automatically
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      with:
+        node_version: ${{ matrix.node_version }}
+    - run: |
+        npm i
+        nodemon index.ts
