@@ -4,6 +4,7 @@ dotenv.config();
 import express from 'express';
 import { Application } from 'express';
 import Server from './src/index';
+
 const app: Application = express();
 
 const port: number = 3100 ? parseInt('3100', 10) : 3000;
@@ -13,7 +14,7 @@ app.listen(port, 'localhost', () => {
     // tslint:disable-next-line:no-console
     console.info(`Server running on : http://localhost:${port}`);
 }).on('error', (err: any) => {
-        if (err.code === 'EADDRINUSE') {
+    if (err.code === 'EADDRINUSE') {
         // tslint:disable-next-line:no-console
         console.log('server startup error: address already in use');
     } else {
