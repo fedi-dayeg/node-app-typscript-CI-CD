@@ -4,7 +4,7 @@ module.exports = {
         "username": "postgres",
         "password": "root",
         "database": "postgres://postgres:root@40.127.96.107/nodeApp",
-        "host": "20.107.194.127",
+        "host": "40.127.96.107",
         "dialect": "postgres"
     },
     "test": {
