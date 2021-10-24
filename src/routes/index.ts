@@ -6,7 +6,6 @@ export default class Routes {
     constructor(app: Application) {
         // for leeson;
         app.use('/api/lessons', lessonRouter);
-
         // for Courses
         app.use('/api/courses', CourseRoute);
     }
