@@ -5,7 +5,7 @@
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
   "scripts": {
-    "start": "nodemon src/index.ts",
+    "start": "nodemon build/index.js",
     "prod": "npm run production",
     "dev": "tsnd --respawn index.ts",
     "serve": "nodemon index.ts",
