@@ -14,11 +14,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const CoursesRepo_1 = __importDefault(require("../repositories/CoursesRepo"));
 const errorHandler_1 = require("../handlers/errorHandler");
+const Course_1 = require("../models/Course");
 class CoursesController {
     getAllCourses(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                // await Course.sync();
+                yield Course_1.Course.sync();
                 const coursesList = yield CoursesRepo_1.default.getAllCourses({ order: ['seqNo'] });
                 res.json(coursesList);
             }
@@ -30,6 +31,7 @@ class CoursesController {
     getCourseDetail(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                yield Course_1.Course.sync();
                 const courseDetails = yield CoursesRepo_1.default.getById(req.params.id);
                 if (courseDetails) {
                     return res.json(courseDetails);
@@ -40,6 +42,18 @@ class CoursesController {
             }
             catch (error) {
                 (0, errorHandler_1.apiErrorHandler)(error, req, res, `Course ${req.params.id} is failed.`);
+            }
+        });
+    }
+    createCourse(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                yield Course_1.Course.sync();
+                const result = yield CoursesRepo_1.default.createCourse(req.body);
+                res.json(result);
+            }
+            catch (error) {
+                (0, errorHandler_1.apiErrorHandler)(error, req, res, 'Creation of Course failed.');
             }
         });
     }

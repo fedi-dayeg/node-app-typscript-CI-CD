@@ -14,11 +14,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const LessonsRepo_1 = __importDefault(require("../repositories/LessonsRepo"));
 const errorHandler_1 = require("../handlers/errorHandler");
+const Lesson_1 = require("../models/Lesson");
 class LessonsController {
     getAllLeeson(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                // await Lesson.sync();
+                yield Lesson_1.Lesson.sync();
                 const lessons = yield LessonsRepo_1.default.getAllLessons({ order: ['id'] });
                 res.json(lessons);
             }
@@ -30,6 +31,7 @@ class LessonsController {
     getLessonByCourse(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                yield Lesson_1.Lesson.sync();
                 const lesson = yield LessonsRepo_1.default.getLessonByCourse(req.params.id);
                 res.json(lesson);
             }
@@ -41,6 +43,7 @@ class LessonsController {
     getLessonById(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                yield Lesson_1.Lesson.sync();
                 const result = yield LessonsRepo_1.default.getLessonById(req.params.id);
                 if (result) {
                     return res.json(result);
@@ -57,6 +60,7 @@ class LessonsController {
     createLesson(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                yield Lesson_1.Lesson.sync();
                 const result = yield LessonsRepo_1.default.createLesson(req.body);
                 res.json(result);
             }
@@ -70,6 +74,7 @@ class LessonsController {
             // tslint:disable-next-line:radix
             const id = parseInt(req.params.id);
             try {
+                yield Lesson_1.Lesson.sync();
                 const result = yield LessonsRepo_1.default.updateLesson(id, req.body);
                 res.json(result);
             }
@@ -83,6 +88,7 @@ class LessonsController {
             // tslint:disable-next-line:radix
             const id = parseInt(req.params.id);
             try {
+                yield Lesson_1.Lesson.sync();
                 const result = yield LessonsRepo_1.default.deleteLesson(id);
                 res.json(result);
             }

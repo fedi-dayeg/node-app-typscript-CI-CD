@@ -7,7 +7,7 @@ export default class LessonsController {
 
     async getAllLeeson(req: Request, res: Response, next: NextFunction) {
         try {
-            // await Lesson.sync();
+            await Lesson.sync();
             const lessons = await LessonsRepo.getAllLessons({order: ['id']});
             res.json(lessons);
         } catch (error) {
@@ -17,6 +17,7 @@ export default class LessonsController {
 
     async getLessonByCourse(req: Request, res: Response, next: NextFunction) {
         try {
+            await Lesson.sync();
             const lesson = await LessonsRepo.getLessonByCourse(req.params.id);
             res.json(lesson);
         } catch (error) {
@@ -26,6 +27,7 @@ export default class LessonsController {
 
     async getLessonById(req: Request, res: Response, next: NextFunction) {
         try {
+            await Lesson.sync();
             const result = await LessonsRepo.getLessonById(req.params.id);
             if (result) {
                 return res.json(result);
@@ -39,6 +41,7 @@ export default class LessonsController {
 
     async createLesson(req: Request, res: Response, next: NextFunction) {
         try {
+            await Lesson.sync();
             const result = await LessonsRepo.createLesson(req.body);
             res.json(result);
         } catch (error) {
@@ -50,6 +53,7 @@ export default class LessonsController {
         // tslint:disable-next-line:radix
         const id = parseInt(req.params.id);
         try {
+            await Lesson.sync();
             const result = await LessonsRepo.updateLesson(id, req.body);
             res.json(result);
         } catch (error) {
@@ -61,6 +65,7 @@ export default class LessonsController {
         // tslint:disable-next-line:radix
         const id = parseInt(req.params.id);
         try {
+            await Lesson.sync();
             const result = await LessonsRepo.deleteLesson(id);
             res.json(result);
         } catch (error) {

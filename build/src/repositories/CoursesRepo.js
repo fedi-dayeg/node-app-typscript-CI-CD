@@ -16,5 +16,8 @@ class CoursesRepo {
             ],
         });
     }
+    createCourse(props) {
+        return Course_1.Course.create(props);
+    }
 }
 exports.default = new CoursesRepo();

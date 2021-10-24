@@ -5,21 +5,21 @@ module.exports = {
         "username": "postgres",
         "password": "root",
         "database": "postgres://postgres:root@20.107.194.127/nodeApp",
-        "host": "127.0.0.1",
+        "host": "20.107.194.127",
         "dialect": "postgres"
     },
     "test": {
         "username": "postgres",
         "password": "root",
         "database": "postgres://postgres:root@20.107.194.127/nodeApp",
-        "host": "127.0.0.1",
-        "dialect": "mysql"
+        "host": "20.107.194.127",
+        "dialect": "postgres"
     },
     "production": {
         "username": "postgres",
         "password": "root",
         "database": "postgres://postgres:root@20.107.194.127/nodeApp",
-        "host": "127.0.0.1",
-        "dialect": "mysql"
+        "host": "20.107.194.127",
+        "dialect": "postgres"
     }
 };
