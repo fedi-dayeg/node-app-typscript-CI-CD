@@ -31,7 +31,7 @@ const port = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 const server = new index_1.default(app);
 app.listen(port, 'localhost', () => {
     // tslint:disable-next-line:no-console
-    console.info(`Server running on : http://localhost:${port}`);
+    console.info(`Server running on : http://20.107.194.127:${port}`);
 }).on('error', (err) => {
     if (err.code === 'EADDRINUSE') {
         // tslint:disable-next-line:no-console
