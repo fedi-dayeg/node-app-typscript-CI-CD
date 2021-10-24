@@ -32,4 +32,9 @@ jobs:
     - name: build
       run: |
         npm run start
+        cd ..
+        pm2 stop 0
+        spm2 start 0
+        pm2 save
+        sudo service nginx restart
 
