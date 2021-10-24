@@ -6,11 +6,19 @@ import { Course } from '../models/Course';
 export default class CoursesController {
     async getAllCourses(req: Request, res: Response, next: NextFunction) {
         try {
-             await Course.sync();
+            await Course.sync();
             const coursesList = await CoursesRepo.getAllCourses({order: ['seqNo']});
             res.json(coursesList);
         } catch (error) {
             apiErrorHandler(error, req, res, 'Fetch All Courses failed. ');
+        }
+    }
+
+    async testService(req: Request, res: Response, next: NextFunction) {
+        try {
+            res.json({message: 'message from fedi'});
+        } catch (error) {
+            apiErrorHandler(error, req, res, 'fetch failed');
         }
     }
 
@@ -34,7 +42,7 @@ export default class CoursesController {
             const result = await CoursesRepo.createCourse(req.body);
             res.json(result);
         } catch (error) {
-            apiErrorHandler(error, req, res, 'Creation of Course failed.')
+            apiErrorHandler(error, req, res, 'Creation of Course failed.');
         }
     }
 }

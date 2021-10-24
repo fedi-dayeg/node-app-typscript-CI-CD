@@ -12,6 +12,7 @@ class CourseRoute {
     }
 
     intializeRoutes() {
+        this.router.route('/test').get(this.cpursesController.testService);
         this.router.route('/').get(this.cpursesController.getAllCourses);
         this.router.route('/:id').get(this.cpursesController.getCourseDetail);
         this.router.route('/').post(this.courseValidator.validateBody(courseShema), this.cpursesController.createCourse);
