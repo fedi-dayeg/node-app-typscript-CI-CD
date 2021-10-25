@@ -2,7 +2,7 @@ import * as Joi from 'joi';
 import { Request, Response, NextFunction } from 'express';
 
 interface LesseonRequest extends Request {
-    value?: { body?: string};
+    value?: { body?: string };
 }
 
 export class LessonValidator {
