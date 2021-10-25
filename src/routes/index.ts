@@ -5,9 +5,9 @@ import CourseRoute from './CourseRoute';
 export default class Routes {
     constructor(app: Application) {
         // for leeson;
-        app.use('/api/lessons', lessonRouter);
+            app.use('/api/lessons', lessonRouter);
 
         // for Courses
-        app.use('/api/courses', CourseRoute);
+            app.use('/api/course', CourseRoute);
     }
 }
