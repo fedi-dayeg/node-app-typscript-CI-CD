@@ -14,9 +14,10 @@ export default class CoursesController {
         }
     }
 
+
     async testService(req: Request, res: Response, next: NextFunction) {
         try {
-            res.json({message: 'message from fedi'});
+            res.json({message: 'hello Nadi Bilgacem'});
         } catch (error) {
             apiErrorHandler(error, req, res, 'fetch failed');
         }
