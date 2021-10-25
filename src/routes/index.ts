@@ -8,6 +8,6 @@ export default class Routes {
             app.use('/api/lessons', lessonRouter);
 
         // for Courses
-            app.use('/api/courses', CourseRoute);
+            app.use('/api/course', CourseRoute);
     }
 }
