@@ -24,7 +24,7 @@ class UserController {
     }
 
     async signup(req: Request, res: Response): Promise<Response> {
-        // await User.sync();
+         await User.sync();
         const uploadDir = './uploads';
         const storage = multer.diskStorage({
             destination: (req2: Request, file, cb) => {
