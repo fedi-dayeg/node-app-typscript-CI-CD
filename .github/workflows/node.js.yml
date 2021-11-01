@@ -28,8 +28,8 @@
         run: |
           npm run build-prod
           cd ..
-          pm2 stop 1
-          pm2 start 1
+          pm2 stop 0
+          pm2 start 0
           pm2 save
           sudo service nginx restart
 
