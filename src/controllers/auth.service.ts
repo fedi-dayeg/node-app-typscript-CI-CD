@@ -4,6 +4,8 @@ import { promisifyAll } from 'bluebird';
 import { IUser } from '../typings/auth/IUser';
 import { IResponse } from '../typings/IResponse';
 import { User } from '../models/User';
+import UserRepo from '../repositories/UserRepo';
+import multer from 'multer';
 
 const bcrypt = promisifyAll(bcriptNodejs);
 
@@ -20,7 +22,22 @@ class AuthController {
     }
 
     public async signup(user: IUser): Promise<IResponse> {
-        const {username, password} = user;
+        // const logo = multer({dest: './upload'}).single('photo');
+        const {
+            username,
+            password,
+            firstName,
+            lastName,
+            dob,
+            location,
+            mobilePhone,
+            logo,
+            facebookAccount,
+            twitterAccount,
+            googleAccount,
+            email,
+            gender
+        } = user;
 
         if (user.username === undefined || user.password === undefined) {
             return {success: true, status: 400};
@@ -28,7 +45,21 @@ class AuthController {
 
         try {
             // tslint:disable-next-line:no-shadowed-variable
-            const user = await User.create({username, password});
+            const user = await User.create({
+                username,
+                password,
+                dob,
+                location,
+                mobilePhone,
+                logo,
+                gender,
+                email,
+                googleAccount,
+                twitterAccount,
+                facebookAccount,
+                firstName,
+                lastName
+            });
             const userJson = user.toJSON();
             return {
                 success: true,
@@ -54,11 +85,13 @@ class AuthController {
 
         try {
             // tslint:disable-next-line:no-shadowed-variable
-            const user: any = await User.findOne({
+            /*const user: any = await User.findOne({
                 where: {
                     username
                 }
-            });
+            });*/
+            // tslint:disable-next-line:no-shadowed-variable
+            const user: any = await UserRepo.findByUser(username);
 
             if (!user) {
                 return {
@@ -67,28 +100,6 @@ class AuthController {
                     message: 'user not found'
                 };
             }
-
-
-            // let isPasswordValid = false;
-            /* bcrypt.compare(
-                password,
-                user.password, (err: any, res: any) => {
-                    if (res) {
-                        const userJson = user.toJSON();
-                        return {
-                            success: true,
-                            status: 200,
-                            user: userJson,
-                            token: jwtSignUser(userJson)
-                        };
-                    } else {
-                        return {
-                            success: false,
-                            status: 403,
-                            message: 'password incorrect'
-                        };
-                    }
-                });*/
             const match = await bcrypt.compare(password, user.password);
             // console.log(match);
             if (match) {

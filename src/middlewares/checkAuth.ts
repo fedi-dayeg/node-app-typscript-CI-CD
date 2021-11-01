@@ -1,4 +1,4 @@
-import * as passport from 'passport';
+import passport from 'passport';
 import { Request, Response, NextFunction } from 'express';
 export const isAuthenticated = (req: Request, res: Response, next: NextFunction) => {
     passport.authenticate('jwt', (err, user) => {

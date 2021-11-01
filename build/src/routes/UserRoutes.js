@@ -1,11 +1,13 @@
-import { Router } from 'express';
-import UserController from '../controllers/UserController';
-import { isAuthenticated } from '../middlewares/checkAuth';
-import { userSchema, UserValidator } from '../validators/userValidators';
-import multer from 'multer';
-import { uuid } from 'uuidv4';
-import { uploadFile } from '../middlewares/upload';
-
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const UserController_1 = __importDefault(require("../controllers/UserController"));
+const checkAuth_1 = require("../middlewares/checkAuth");
+const userValidators_1 = require("../validators/userValidators");
+const upload_1 = require("../middlewares/upload");
 /*const uploadDir = './uploads';
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -17,7 +19,6 @@ const storage = multer.diskStorage({
         cb(null, `${uuid()}-${file.filename}`);
     }
 });*/
-
 /*const upload = multer({
     storage,
     fileFilter: (req, file, cb) => {
@@ -42,23 +43,17 @@ const storage = multer.diskStorage({
     }
 });*/
 class UserRoutes {
-    router = Router();
-    userController = UserController;
-    userValidator = new UserValidator();
-
     constructor() {
+        this.router = (0, express_1.Router)();
+        this.userController = UserController_1.default;
+        this.userValidator = new userValidators_1.UserValidator();
         this.intializeRoutes();
     }
-
-
-
     intializeRoutes() {
         this.router.route('/login').post(this.userController.signin);
-        this.router.route('/register').post(uploadFile, this.userValidator.validateBody(userSchema), this.userController.signup);
-        this.router.route('/check').post(isAuthenticated, this.userController.check);
-        this.router.route('/user/:id').get(isAuthenticated, this.userController.getUserById);
-
+        this.router.route('/register').post(upload_1.uploadFile, this.userValidator.validateBody(userValidators_1.userSchema), this.userController.signup);
+        this.router.route('/check').post(checkAuth_1.isAuthenticated, this.userController.check);
+        this.router.route('/user/:id').get(checkAuth_1.isAuthenticated, this.userController.getUserById);
     }
 }
-
-export default new UserRoutes().router;
+exports.default = new UserRoutes().router;

@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import LessonsController from '../controllers/LessonsController';
 import { lessonShema, LessonValidator } from '../validators/lessonValidator';
+import { isAuthenticated } from '../middlewares/checkAuth';
 
 class LessonRoutes {
     router = Router();
@@ -12,7 +13,7 @@ class LessonRoutes {
     }
 
     intializeRoutes() {
-        this.router.route('/').get(this.lessonsController.getAllLeeson);
+        this.router.route('/').get(isAuthenticated, this.lessonsController.getAllLeeson);
         this.router.route('/course/:id').get(this.lessonsController.getLessonByCourse);
         this.router.route('/:id').get(this.lessonsController.getLessonById);
         this.router.route('/').post(this.lessonValidator.validateBody(lessonShema), this.lessonsController.createLesson);

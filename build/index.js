@@ -26,9 +26,15 @@ const dotenv = __importStar(require("dotenv"));
 dotenv.config();
 const express_1 = __importDefault(require("express"));
 const index_1 = __importDefault(require("./src/index"));
+const multer_1 = __importDefault(require("multer"));
+const upload = (0, multer_1.default)({ dest: 'uploads/' });
 const app = (0, express_1.default)();
 const port = 3100 ? parseInt('3100', 10) : 3000;
 const server = new index_1.default(app);
+// tslint:disable-next-line:no-var-requires
+require('./src/config/passport');
+app.use(express_1.default.static(__dirname + '/public'));
+app.use('/uploads', express_1.default.static('uploads'));
 app.listen(port, 'localhost', () => {
     // tslint:disable-next-line:no-console
     console.info(`Server running on : http://localhost:${port}`);

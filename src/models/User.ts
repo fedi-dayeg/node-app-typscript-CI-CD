@@ -61,7 +61,18 @@ User.init(
         password: {
             type: DataTypes.STRING,
             allowNull: false
-        }
+        },
+        firstName: {type: DataTypes.STRING, allowNull: false},
+        lastName: {type: DataTypes.STRING, allowNull: false},
+        email: {type: DataTypes.STRING, allowNull: false},
+        gender: {type: DataTypes.STRING, allowNull: true},
+        mobilePhone: {type: DataTypes.INTEGER, allowNull: true},
+        dob: {type: DataTypes.DATE, allowNull: true},
+        location: {type: DataTypes.STRING, allowNull: true},
+        facebookAccount: {type: DataTypes.STRING, allowNull: true},
+        googleAccount: {type: DataTypes.STRING, allowNull: true},
+        twitterAccount: {type: DataTypes.STRING, allowNull: true},
+        logo: {type: DataTypes.STRING, allowNull: true}
     },
     {
         sequelize,

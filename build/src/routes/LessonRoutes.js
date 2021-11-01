@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const LessonsController_1 = __importDefault(require("../controllers/LessonsController"));
 const lessonValidator_1 = require("../validators/lessonValidator");
+const checkAuth_1 = require("../middlewares/checkAuth");
 class LessonRoutes {
     constructor() {
         this.router = (0, express_1.Router)();
@@ -14,7 +15,7 @@ class LessonRoutes {
         this.intializeRoutes();
     }
     intializeRoutes() {
-        this.router.route('/').get(this.lessonsController.getAllLeeson);
+        this.router.route('/').get(checkAuth_1.isAuthenticated, this.lessonsController.getAllLeeson);
         this.router.route('/course/:id').get(this.lessonsController.getLessonByCourse);
         this.router.route('/:id').get(this.lessonsController.getLessonById);
         this.router.route('/').post(this.lessonValidator.validateBody(lessonValidator_1.lessonShema), this.lessonsController.createLesson);

@@ -1,7 +1,5 @@
-import jwt from 'express-jwt';
-import { Request, Response, NextFunction } from 'express';
-import UserRepo from '../repositories/UserRepo';
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 /* export function authorize() {
     return [
         jwt({secret: 'bearrer', algorithms: ['HS256']}),

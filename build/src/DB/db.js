@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.sequelize = void 0;
 const sequelize_1 = require("sequelize");
-const dbUrl = 'postgres://postgres:root@20.107.194.127/nodeApp' || '';
+const dbUrl = 'postgres://postgres:root@localhost/nodeApp' || '';
 const nodeEnv = process.env.NODE_ENV || '';
 if (!dbUrl) {
     // tslint:disable-next-line:no-console

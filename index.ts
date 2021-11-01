@@ -4,11 +4,17 @@ dotenv.config();
 import express from 'express';
 import { Application } from 'express';
 import Server from './src/index';
-
+import multer from 'multer';
+const upload = multer({dest: 'uploads/'});
 const app: Application = express();
 
 const port: number = 3100 ? parseInt('3100', 10) : 3000;
 const server: Server = new Server(app);
+// tslint:disable-next-line:no-var-requires
+require('./src/config/passport');
+app.use(express.static(__dirname + '/public'));
+app.use('/uploads', express.static('uploads'));
+
 
 app.listen(port, 'localhost', () => {
     // tslint:disable-next-line:no-console

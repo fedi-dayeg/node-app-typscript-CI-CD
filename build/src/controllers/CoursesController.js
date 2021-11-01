@@ -28,6 +28,16 @@ class CoursesController {
             }
         });
     }
+    testService(req, res, next) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                res.json({ message: 'hello Nadi Bilgacem' });
+            }
+            catch (error) {
+                (0, errorHandler_1.apiErrorHandler)(error, req, res, 'fetch failed');
+            }
+        });
+    }
     getCourseDetail(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
